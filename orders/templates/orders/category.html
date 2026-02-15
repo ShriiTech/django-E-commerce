@@ -1,0 +1,12 @@
+{% for product in products %}
+<div class="card" style="width:18rem; display:inline-block; margin:10px;">
+    <h5>{{ product.name }}</h5>
+    <p>{{ product.price }} تومان</p>
+
+    <form method="post" action="{% url 'orders:cart_add' product.id %}">
+        {% csrf_token %}
+        <input type="number" name="quantity" value="1" min="1" class="form-control" style="width:70px; display:inline-block;">
+        <button type="submit" class="btn btn-success btn-sm">افزودن به سبد</button>
+    </form>
+</div>
+{% endfor %}
