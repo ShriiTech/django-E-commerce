@@ -5,5 +5,4 @@ admin.site.register(Category)
 
 @admin.register(Product)
 class ProductAdmin (admin.ModelAdmin):
-    raw_id_fields = ('category',)
- 
+    filter_horizontal = ('category',) 
