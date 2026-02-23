@@ -7,10 +7,10 @@ from django.views import View
 from .cart import SessionCart
 from home.models import Product
 from .forms import CartAddForm, CouponApplyForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import Order, OrdersItem, Coupon
 from django.contrib import messages
-
+from django.core.exceptions import PermissionDenied
 
 logger = logging.getLogger(__name__)  # 🔥 لاگر اصلی
 
@@ -21,7 +21,9 @@ class CartView(View):
         return render(request, 'orders/cart.html', {'cart': cart})
 
 
-class CartAddView(View):
+class CartAddView(PermissionRequiredMixin, View):
+    permission_required = 'orders.add_order'
+    
     def post(self, request, product_id):
         cart = SessionCart(request)
         product = get_object_or_404(Product, id=product_id)

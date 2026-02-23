@@ -26,7 +26,6 @@
             <a href="{{ product.get_absolute_url }}" class="card-title">{{ product.name }}</a>
             <p>{{ product.price }} Toman</p>
 
-            <!-- ✅ اینجا action باید دقیقاً درست باشد -->
             <form method="post" action="{% url 'orders:cart_add' product.id %}">
                 {% csrf_token %}
                 <input type="number" name="quantity" value="1" min="1" 

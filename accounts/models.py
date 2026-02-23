@@ -10,7 +10,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
     objects = CustomUserManager()
     
@@ -24,12 +24,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def is_admin_user(self):
         return self.is_admin
     
-    def has_perm(self,perm,obj=None):
-        return True
-    
-    def has_module_perms(self,app_label):
-        return True
-    
 
 class OtpCode(models.Model):
     phone_number = models.CharField(max_length=11, unique = True)
@@ -38,6 +32,4 @@ class OtpCode(models.Model):
 
     def __str__(self):
         return f'{self.phone_number} - {self.code} - {self.created}'
-    
-
     
