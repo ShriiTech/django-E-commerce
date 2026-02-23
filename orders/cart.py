@@ -3,7 +3,7 @@ from home.models import Product
 
 CART_SESSION_ID = 'cart'
 
-class Cart:
+class SessionCart:
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(CART_SESSION_ID)
@@ -44,6 +44,7 @@ class Cart:
     
 
     def clear(self):
-        del self.session[CART_SESSION_ID]
+        if CART_SESSION_ID in self.session:
+            del self.session[CART_SESSION_ID]
         self.save()
 

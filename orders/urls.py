@@ -1,6 +1,6 @@
 # orders/urls.py
 from django.urls import path
-from .views import CartView, CartAddView, CartRemoveView, OrderCreateView, OrderDetailView
+from .views import CartView, CartAddView, CartRemoveView, OrderCreateView, OrderDetailView, CouponApplyView
 
 app_name = 'orders'
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('cart/', CartView.as_view(), name='cart'),
     path('cart/add/<int:product_id>/', CartAddView.as_view(), name='cart_add'),
     path('cart/remove/<int:product_id>/', CartRemoveView.as_view(), name='cart_remove'),
+    path('apply/<int:order_id>/', CouponApplyView.as_view(), name='apply_coupon'),
 ]
