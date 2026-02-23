@@ -129,6 +129,15 @@ DATABASES = {
 }
 
 
+CACHES = {
+    'default' :{
+        'BACKEND' :'django.core.cache.backends.redis.RedisCache',
+        'LOCATION' :'redis://127.0.0.1:6379',
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -214,25 +223,4 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
 ]
 
-# env = environ.Env()
-# environ.Env.read_env(BASE_DIR / ".env")
-
-# STORAGES = {
-#     "default": {   # media → S3
-#         "BACKEND": "storages.backends.s3.S3Storage",
-#         "OPTIONS": {
-#             "access_key": env("ARVAN_ACCESS_KEY"),
-#             "secret_key": env("ARVAN_SECRET_KEY"),
-#             "bucket_name": env("ARVAN_STORAGE_BUCKET_NAME"),
-#             "endpoint_url": env("ARVAN_ENDPOINT_URL"),
-#             "region_name": env("ARVAN_REGION"),
-#             "querystring_auth": False,
-#         },
-#     },
-#     "staticfiles": {   # static → local
-#         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-#     },
-# }
-
-# KAVENEGAR_API_KEY = env("KAVENEGAR_API_KEY")
 
