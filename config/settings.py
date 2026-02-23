@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     # third party app 
     'storages',
     'django_celery_beat',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
